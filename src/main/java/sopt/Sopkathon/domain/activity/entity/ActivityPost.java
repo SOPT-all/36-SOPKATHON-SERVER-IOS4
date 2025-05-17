@@ -67,6 +67,14 @@ public class ActivityPost extends BaseEntity {
     @Column(nullable = false)
     private boolean isFood;
 
+    @Builder.Default
+    @Column(nullable = false)
+    private long currentParticipantCount = 0L;
+
+    @Builder.Default
+    @Column(nullable = false)
+    private boolean isOpened = false;
+
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private ActivityTag tag;
@@ -82,4 +90,9 @@ public class ActivityPost extends BaseEntity {
     @Column(nullable = false)
     @Builder.Default
     private boolean isClosed = false;
+
+    public void calculateStatus() {
+        this.currentParticipantCount = this.participations.size();
+        this.isOpened = this.currentParticipantCount >= this.maxParticipation;
+    }
 }
