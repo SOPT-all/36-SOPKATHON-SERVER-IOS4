@@ -15,6 +15,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 import sopt.Sopkathon.domain.activity.entity.enums.ParticipationStatus;
+import sopt.Sopkathon.domain.member.entity.Member;
 
 @Entity
 @Getter
@@ -33,9 +34,9 @@ public class ActivityReview {
     @Column(nullable = false)
     private int star;
 
-//    @ManyToOne(optional = false)
-//    @JoinColumn(name = "member_id", nullable = false)
-//    private Member member;
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "member_id", nullable = false)
+    private Member member;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "activity_post_id", nullable = false)

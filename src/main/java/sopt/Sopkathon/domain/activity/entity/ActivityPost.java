@@ -1,24 +1,17 @@
 package sopt.Sopkathon.domain.activity.entity;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 import sopt.Sopkathon.domain.activity.entity.enums.ActivityTag;
+import sopt.Sopkathon.domain.member.entity.Member;
 import sopt.Sopkathon.global.common.entity.BaseEntity;
 
 @Entity
@@ -32,9 +25,9 @@ public class ActivityPost extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-//    @ManyToOne(optional = false)
-//    @JoinColumn(name = "member_id", nullable = false)
-//    private Member writer;
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "member_id", nullable = false)
+    private Member writer;
 
     @Column(nullable = false)
     private String title;
@@ -72,4 +65,8 @@ public class ActivityPost extends BaseEntity {
 
     @OneToMany(mappedBy = "activityPost", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<ActivityReview> reviews = new ArrayList<>();
+
+    @Column(nullable = false)
+    @Builder.Default
+    private boolean isClosed = false;
 }

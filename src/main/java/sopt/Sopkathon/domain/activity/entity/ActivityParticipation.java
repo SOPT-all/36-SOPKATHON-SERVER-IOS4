@@ -15,6 +15,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 import sopt.Sopkathon.domain.activity.entity.enums.ParticipationStatus;
+import sopt.Sopkathon.domain.member.entity.Member;
 import sopt.Sopkathon.global.common.entity.BaseEntity;
 
 @Entity
@@ -28,9 +29,9 @@ public class ActivityParticipation extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-//    @ManyToOne(optional = false)
-//    @JoinColumn(name = "member_id", nullable = false)
-//    private Member member;
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "member_id", nullable = false)
+    private Member member;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "activity_post_id", nullable = false)
