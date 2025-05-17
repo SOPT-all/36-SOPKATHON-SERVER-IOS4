@@ -40,4 +40,12 @@ public class ActivityParticipation extends BaseEntity {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private ParticipationStatus status;
+
+    public static ActivityParticipation of(Member member, ActivityPost post) {
+        return ActivityParticipation.builder()
+                .member(member)
+                .activityPost(post)
+                .status(ParticipationStatus.APPLICATION_COMPLETE)
+                .build();
+    }
 }
