@@ -1,5 +1,6 @@
 package sopt.Sopkathon.domain.member.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,6 +27,7 @@ public class MemberController {
         return ResponseEntity.ok(ApiResponse.success(200, "회원 조회 성공", member));
     }
 
+    @Operation(summary = "마이페이지 활동 신청/참여 내역 조회")
     @GetMapping("/{memberId}/activities")
     public ApiResponse<MyActivityListResponse> getMyActivities(
             @PathVariable Long memberId

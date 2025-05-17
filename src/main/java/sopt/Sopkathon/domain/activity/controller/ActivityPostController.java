@@ -1,5 +1,6 @@
 package sopt.Sopkathon.domain.activity.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -22,6 +23,7 @@ public class ActivityPostController {
 
     private final ActivityPostService activityPostService;
 
+    @Operation(summary = "카테고리, 모집 마감 여부로 활동 글 조회")
     @GetMapping
     public ApiResponse<List<ActivityPostResponse>> getPosts(
             @RequestParam(required = false) ActivityTag tag,
@@ -31,6 +33,7 @@ public class ActivityPostController {
         return ApiResponse.success(200, "활동 글 조회 성공", result);
     }
 
+    @Operation(summary = "활동 상세 조회(활동 신청 페이지)")
     @GetMapping("/{postId}")
     public ApiResponse<ActivityPostDetailResponse> getDetail(@PathVariable Long postId) {
         ActivityPostDetailResponse dto = activityPostService.getDetail(postId);
@@ -38,6 +41,7 @@ public class ActivityPostController {
         );
     }
 
+    @Operation(summary = "활동 신청하기(버튼 클릭시 활동 신청)")
     @PostMapping("/{postId}/apply")
     public ApiResponse<Void> applyActivity(@PathVariable Long postId, Long memberId) {
         activityPostService.apply(postId, memberId);
