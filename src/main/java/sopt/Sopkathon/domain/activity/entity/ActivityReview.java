@@ -21,7 +21,7 @@ import sopt.Sopkathon.domain.member.entity.Member;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @SuperBuilder
-@Table(name = "activity_participation")
+@Table(name = "activity_review")
 public class ActivityReview {
 
     @Id
