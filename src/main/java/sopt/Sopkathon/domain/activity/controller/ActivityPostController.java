@@ -24,9 +24,10 @@ public class ActivityPostController {
 
     @GetMapping
     public ApiResponse<List<ActivityPostResponse>> getPosts(
-            @RequestParam(required = false) ActivityTag tag
+            @RequestParam(required = false) ActivityTag tag,
+            @RequestParam(required = false, defaultValue = "false") boolean excludeClosed
     ) { // 쿼리 파라미터 전달 x -> 전체 조회
-        List<ActivityPostResponse> result = activityPostService.getActivityPosts(tag);
+        List<ActivityPostResponse> result = activityPostService.getActivityPosts(tag, excludeClosed);
         return ApiResponse.success(200, "활동 글 조회 성공", result);
     }
 
