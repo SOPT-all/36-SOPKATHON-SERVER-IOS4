@@ -16,13 +16,14 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 import sopt.Sopkathon.domain.activity.entity.enums.ParticipationStatus;
 import sopt.Sopkathon.domain.member.entity.Member;
+import sopt.Sopkathon.global.common.entity.BaseEntity;
 
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @SuperBuilder
 @Table(name = "activity_review")
-public class ActivityReview {
+public class ActivityReview extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
