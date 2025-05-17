@@ -1,6 +1,7 @@
 package sopt.Sopkathon.domain.activity.service;
 
 import java.util.List;
+import java.util.stream.Stream;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,8 +27,15 @@ public class ActivityPostService {
     private final MemberRepository memberRepository;
 
     @Transactional(readOnly = true)
-    public List<ActivityPostResponse> getActivityPosts(ActivityTag tag) {
+    public List<ActivityPostResponse> getActivityPosts(ActivityTag tag, boolean excludeClosed) {
         List<ActivityPost> posts = (tag != null) ? activityPostRepository.findAllByTag(tag) : activityPostRepository.findAll();
+
+        posts.forEach(ActivityPost::calculateStatus);
+
+        Stream<ActivityPost> stream = posts.stream();
+        if (excludeClosed) {
+            stream = stream.filter(p -> !p.isOpened());
+        }
 
         return posts.stream()
                 .map(ActivityPostResponse::from)

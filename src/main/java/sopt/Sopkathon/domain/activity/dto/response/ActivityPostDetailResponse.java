@@ -11,7 +11,8 @@ public record ActivityPostDetailResponse(
         String participationFee,
         LocalDateTime startTime,
         LocalDateTime endTime,
-        ActivityTag tag
+        ActivityTag tag,
+        String imageUrl
 ) {
     public static ActivityPostDetailResponse from(ActivityPost post) {
         return new ActivityPostDetailResponse(
@@ -21,7 +22,8 @@ public record ActivityPostDetailResponse(
                 post.getParticipationFee(),
                 post.getStartTime(),
                 post.getEndTime(),
-                post.getTag()
+                post.getTag(),
+                post.getImageUrl()
         );
     }
 }
