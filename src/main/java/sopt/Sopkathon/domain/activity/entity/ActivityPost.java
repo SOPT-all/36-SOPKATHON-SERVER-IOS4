@@ -43,6 +43,12 @@ public class ActivityPost extends BaseEntity {
     private String content;
 
     @Column(nullable = false)
+    private String subject;
+
+    @Column(nullable = false)
+    private String participationFee;
+
+    @Column(nullable = false)
     private LocalDateTime startTime;
 
     @Column(nullable = false)
