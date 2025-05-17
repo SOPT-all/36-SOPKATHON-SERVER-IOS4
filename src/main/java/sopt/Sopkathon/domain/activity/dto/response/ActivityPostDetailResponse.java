@@ -12,7 +12,12 @@ public record ActivityPostDetailResponse(
         LocalDateTime startTime,
         LocalDateTime endTime,
         ActivityTag tag,
-        String imageUrl
+        String imageUrl,
+        String activityRegion,
+        long currentParticipantCount,
+        long maxParticipation
+
+
 ) {
     public static ActivityPostDetailResponse from(ActivityPost post) {
         return new ActivityPostDetailResponse(
@@ -23,7 +28,10 @@ public record ActivityPostDetailResponse(
                 post.getStartTime(),
                 post.getEndTime(),
                 post.getTag(),
-                post.getImageUrl()
+                post.getImageUrl(),
+                post.getActivityRegion(),
+                post.getCurrentParticipantCount(),
+                post.getMaxParticipation()
         );
     }
 }
