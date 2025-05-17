@@ -8,7 +8,8 @@ public record ActivityReviewResponse(
         String content,
         int star,
         Long memberId,
-        LocalDateTime createDate
+        LocalDateTime createDate,
+        String activityImageUrl
 ) {
     public static ActivityReviewResponse from(ActivityReview review) {
         return new ActivityReviewResponse(
@@ -16,7 +17,8 @@ public record ActivityReviewResponse(
                 review.getContent(),
                 review.getStar(),
                 review.getMember().getId(),
-                review.getCreateDate()
+                review.getCreateDate(),
+                review.getActivityPost().getImageUrl()
         );
     }
 }

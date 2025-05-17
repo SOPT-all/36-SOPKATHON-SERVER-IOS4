@@ -11,7 +11,8 @@ public record ActivitySummaryResponse(
         LocalDateTime startTime,
         LocalDateTime endTime,
         Long userId,    // 유저 이름 추가
-        String telephone
+        String telephone,
+        String imageUrl
 
 ) {
     public static ActivitySummaryResponse from(ActivityPost post) {
@@ -22,7 +23,8 @@ public record ActivitySummaryResponse(
                 post.getStartTime(),
                 post.getEndTime(),
                 post.getWriter().getId(),
-                post.getWriter().getTelephone()
+                post.getWriter().getTelephone(),
+                post.getImageUrl()
         );
     }
 }

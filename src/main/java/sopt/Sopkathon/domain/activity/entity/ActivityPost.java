@@ -91,6 +91,9 @@ public class ActivityPost extends BaseEntity {
     @Builder.Default
     private boolean isClosed = false;
 
+    @Column(nullable = true)
+    private String imageUrl;
+
     public void calculateStatus() {
         this.currentParticipantCount = this.participations.size();
         this.isOpened = this.currentParticipantCount >= this.maxParticipation;

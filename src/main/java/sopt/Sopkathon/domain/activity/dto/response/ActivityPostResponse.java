@@ -1,8 +1,7 @@
 package sopt.Sopkathon.domain.activity.dto.response;
 
-import sopt.Sopkathon.domain.activity.entity.ActivityPost;
-
 import java.time.LocalDateTime;
+import sopt.Sopkathon.domain.activity.entity.ActivityPost;
 
 public record ActivityPostResponse(
         Long id,
@@ -16,7 +15,8 @@ public record ActivityPostResponse(
         LocalDateTime endTime,
         String tag,
         long maxParticipation,
-        int participantCount
+        int participantCount,
+        String imageUrl
 ) {
     public static ActivityPostResponse from(ActivityPost post) {
         int participantCount = post.getParticipations().size();
@@ -33,7 +33,8 @@ public record ActivityPostResponse(
                 post.getEndTime(),
                 post.getTag().name(),
                 post.getMaxParticipation(),
-                participantCount
+                participantCount,
+                post.getImageUrl()
         );
     }
 }
